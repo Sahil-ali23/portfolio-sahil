@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Sahil Ali — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Space Grotesk','ui-sans-serif','system-ui'], mono: ['JetBrains Mono','ui-monospace','SFMono-Regular'] },
+        colors: {
+          ink: '#0F1419', surface: '#161B22', line: '#242C37',
+          amber: '#E3B341', teal: '#56D4A0', mut: '#8B949E', fg: '#E6E8EB'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+  *{box-sizing:inherit;}
+  html,body{margin:0;background:#0F1419;}
+  ::selection{background:#E3B341;color:#0F1419;}
+  .glow{box-shadow:0 0 0 1px #242C37, 0 20px 60px -20px rgba(227,179,65,0.15);}
+  .scanline{background:repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px);}
+</style>
+</head>
+<body class="bg-ink text-fg font-sans">
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect } = React;
+
+const skillGroups = [
+  { label: "Core Languages", items: ["Java", "Python", "JavaScript"] },
+  { label: "Backend", items: ["Django", "Python"] },
+  { label: "Frontend", items: ["React", "HTML", "CSS", "JavaScript"] },
+  { label: "Problem Solving", items: ["Data Structures", "Algorithms"] },
+];
+
+const pipeline = [
+  "Security Logs", "ML / DL Detection", "GenAI Analysis",
+  "CTI Correlation", "Risk Classification", "Response Recommendation",
+  "Human Approval", "Defense Action"
+];
+
+function NavDot({href, label}) {
+  return (
+    <a href={href} className="text-sm text-mut hover:text-amber transition-colors">{label}</a>
+  );
+}
+
+function Section({id, eyebrow, title, children}) {
+  return (
+    <section id={id} className="max-w-3xl mx-auto px-6 py-20 border-t border-line">
+      <p className="font-mono text-xs text-teal mb-3">{eyebrow}</p>
+      <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-fg">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      {/* NAV */}
+      <header className="sticky top-0 z-10 backdrop-blur bg-ink/80 border-b border-line">
+        <div className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+          <span className="font-mono text-sm text-amber">sahil@dev</span>
+          <nav className="flex gap-6">
+            <NavDot href="#about" label="About" />
+            <NavDot href="#skills" label="Skills" />
+            <NavDot href="#project" label="Project" />
+            <NavDot href="#contact" label="Contact" />
+          </nav>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="scanline absolute inset-0 pointer-events-none"></div>
+        <div className="max-w-3xl mx-auto px-6 pt-24 pb-20 relative">
+          <p className="font-mono text-sm text-teal mb-4">MCA Final Year · Babu Banarsi Das University</p>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-fg mb-6">
+            Sahil Ali
+          </h1>
+          <p className="text-lg md:text-xl text-mut max-w-xl mb-10 leading-relaxed">
+            Full stack developer and DSA learner, building with Java, Python,
+            Django and React — currently deep in a research project on
+            generative AI for cybersecurity.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a href="mailto:alisahil2304@gmail.com" className="px-5 py-2.5 bg-amber text-ink font-medium rounded-md hover:bg-opacity-90 transition">
+              Email me
+            </a>
+            <a href="https://github.com/Sahil-ali23" target="_blank" rel="noreferrer" className="px-5 py-2.5 border border-line text-fg rounded-md hover:border-amber transition">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/sahil-ali-144801270" target="_blank" rel="noreferrer" className="px-5 py-2.5 border border-line text-fg rounded-md hover:border-amber transition">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <Section id="about" eyebrow="01 — Background" title="About">
+        <p className="text-mut leading-relaxed mb-4">
+          I'm in my final year of MCA at Babu Banarsi Das University, where my
+          foundation was built on Java and Data Structures &amp; Algorithms —
+          the discipline of writing correct, efficient code before anything
+          else. That foundation is what pulled me toward full stack
+          development.
+        </p>
+        <p className="text-mut leading-relaxed">
+          I'm currently strengthening my full stack skills with Django on the
+          backend and React on the frontend, alongside Python, HTML, CSS and
+          JavaScript. In parallel, I'm working on a dissertation project that
+          applies generative AI to cybersecurity defense — combining what I'm
+          learning in software development with a genuine interest in how AI
+          can support security teams.
+        </p>
+      </Section>
+
+      {/* SKILLS */}
+      <Section id="skills" eyebrow="02 — Toolkit" title="Skills">
+        <div className="grid sm:grid-cols-2 gap-6">
+          {skillGroups.map((g) => (
+            <div key={g.label} className="border border-line rounded-lg p-5 bg-surface">
+              <p className="font-mono text-xs text-amber mb-3">{g.label}</p>
+              <div className="flex flex-wrap gap-2">
+                {g.items.map((s) => (
+                  <span key={s} className="text-sm text-fg border border-line rounded px-2.5 py-1">{s}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* PROJECT */}
+      <Section id="project" eyebrow="03 — Current Research" title="Generative AI for Next-Gen Cybersecurity">
+        <p className="text-mut leading-relaxed mb-6">
+          My MCA dissertation project proposes a framework that pairs
+          conventional machine learning threat detection with a generative
+          AI / LLM layer, so security teams get both accurate detection and
+          plain-language analysis of what's happening. The goal is to move
+          cybersecurity from reactive, rule-based defense toward something
+          more adaptive — without removing the human from critical decisions.
+        </p>
+
+        <div className="border border-line rounded-lg p-5 bg-surface mb-6">
+          <p className="font-mono text-xs text-teal mb-4">Proposed pipeline</p>
+          <div className="flex flex-wrap items-center gap-2">
+            {pipeline.map((step, i) => (
+              <React.Fragment key={step}>
+                <span className="text-xs md:text-sm text-fg bg-ink border border-line rounded px-3 py-1.5 whitespace-nowrap">
+                  {step}
+                </span>
+                {i < pipeline.length - 1 && <span className="text-mut">→</span>}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4 mb-6">
+          <div>
+            <p className="font-mono text-xs text-amber mb-2">What it does</p>
+            <ul className="text-mut text-sm space-y-1.5 list-disc list-inside">
+              <li>Detects threats using ML/DL models (Random Forest, XGBoost, LSTM)</li>
+              <li>Uses an LLM layer to explain alerts and correlate threat intelligence</li>
+              <li>Recommends defensive actions with human-in-the-loop approval</li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-mono text-xs text-amber mb-2">Built with</p>
+            <ul className="text-mut text-sm space-y-1.5 list-disc list-inside">
+              <li>Python, Scikit-learn, TensorFlow / PyTorch</li>
+              <li>LLM APIs, LangChain, Retrieval-Augmented Generation</li>
+              <li>CICIDS2017, UNSW-NB15 and public phishing/malware datasets</li>
+            </ul>
+          </div>
+        </div>
+
+        <p className="text-mut text-sm leading-relaxed">
+          Evaluated on detection accuracy, precision, recall, F1-score and
+          response time, while also studying the risks of using GenAI in
+          security-critical settings — hallucination, prompt injection and
+          reliability — to keep human oversight central to every automated
+          decision.
+        </p>
+      </Section>
+
+      {/* CONTACT */}
+      <Section id="contact" eyebrow="04 — Reach out" title="Let's connect">
+        <p className="text-mut leading-relaxed mb-8">
+          I'm looking for opportunities as a Software Developer or Full Stack
+          Developer — happy to talk about roles, internships, or just trade
+          notes on DSA and Django.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="mailto:alisahil2304@gmail.com" className="flex-1 border border-line rounded-lg p-4 hover:border-amber transition bg-surface">
+            <p className="font-mono text-xs text-teal mb-1">Email</p>
+            <p className="text-fg text-sm">alisahil2304@gmail.com</p>
+          </a>
+          <a href="https://github.com/Sahil-ali23" target="_blank" rel="noreferrer" className="flex-1 border border-line rounded-lg p-4 hover:border-amber transition bg-surface">
+            <p className="font-mono text-xs text-teal mb-1">GitHub</p>
+            <p className="text-fg text-sm">github.com/Sahil-ali23</p>
+          </a>
+          <a href="https://www.linkedin.com/in/sahil-ali-144801270" target="_blank" rel="noreferrer" className="flex-1 border border-line rounded-lg p-4 hover:border-amber transition bg-surface">
+            <p className="font-mono text-xs text-teal mb-1">LinkedIn</p>
+            <p className="text-fg text-sm">in/sahil-ali-144801270</p>
+          </a>
+        </div>
+      </Section>
+
+      <footer className="max-w-3xl mx-auto px-6 py-10 border-t border-line text-center">
+        <p className="font-mono text-xs text-mut">Sahil Ali — built with React &amp; Tailwind</p>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
